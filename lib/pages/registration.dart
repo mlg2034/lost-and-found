@@ -40,13 +40,13 @@ class RegistrationScreen extends StatelessWidget {
                           child:
                               Image.asset('assets/images/VectorRectangle.png')),
                     ),
-                    Padding(
+                  const  Padding(
                       padding: const EdgeInsets.only(top: 252),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Column(
                           children: [
-                            const Center(
+                             Center(
                               child: Text(
                                 'Registration',
                                 style: TextStyle(
@@ -57,7 +57,7 @@ class RegistrationScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(
+                             SizedBox(
                               height: 33,
                             ),
                             CustomTextField(

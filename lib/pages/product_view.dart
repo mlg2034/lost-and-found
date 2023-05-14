@@ -28,6 +28,23 @@ class _ProductViewState extends State<ProductView> {
                     child: Image.asset('assets/images/AirPods.png'),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 65, horizontal: 3),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop(MaterialPageRoute(
+                            builder: (context) => HomePage()));
+                      },
+                      child: SizedBox(
+                          height: 35,
+                          width: 35,
+                          child: Image.asset('assets/images/go_back.png')),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 299, horizontal: 21),
                   child: Column(
@@ -146,46 +163,70 @@ class _ProductViewState extends State<ProductView> {
                       const SizedBox(
                         height: 20,
                       ),
-                    const  Row(
+                      Row(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 43.5,
                             backgroundImage:
                                 AssetImage('assets/images/avatar.png'),
                           ),
-                           SizedBox(
+                          const SizedBox(
                             width: 29,
                           ),
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Sharipova Amina',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Bitter',
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400),
+                              ),
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              const Text(
+                                'example@gmail.com',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'Bitter',
+                                    fontWeight: FontWeight.w300,
+                                    color: Color.fromRGBO(135, 131, 131, 1)),
+                              ),
+                              const SizedBox(
+                                height: 17,
+                              ),
+                              SizedBox(
+                                width: 91,
+                                height: 21,
+                                child: OutlinedButton(
+                                    style: ButtonStyle(
+                                      side:
+                                          MaterialStateProperty.all<BorderSide>(
+                                        const BorderSide(
+                                            color: Color.fromRGBO(
+                                                67, 197, 158, 1)),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: const Text(
+                                      'Call',
+                                      style: TextStyle(
+                                          fontFamily: 'Bitter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                          color:
+                                              Color.fromRGBO(67, 197, 158, 1)),
+                                    )),
                               )
                             ],
                           )
                         ],
                       )
                     ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 65, horizontal: 5),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(
-                          MaterialPageRoute(builder: (context) => HomePage()));
-                    },
-                    child: SizedBox(
-                        height: 87,
-                        width: 87,
-                        child: Image.asset('assets/images/go_back.png')),
                   ),
                 ),
               ],

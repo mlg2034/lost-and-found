@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchTextField extends StatelessWidget {
+    final String textHint;
+
   const CustomSearchTextField({
     super.key,
+    required this.textHint
   });
 
   @override
@@ -23,7 +26,7 @@ class CustomSearchTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(7),
               borderSide: const BorderSide(
                   color: Color.fromRGBO(194, 194, 194, 1))),
-          hintText: 'S e a r c h . . .',
+          hintText: textHint,
           suffixIcon: const Icon(
             Icons.search,
             color: Color.fromRGBO(194, 194, 194, 1),

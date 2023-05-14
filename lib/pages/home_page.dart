@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomSearchTextField(),
+              CustomSearchTextField(textHint: 'S e a r c h . . .',),
               const SizedBox(
                 height: 20,
               ),
