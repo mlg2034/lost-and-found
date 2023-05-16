@@ -210,37 +210,7 @@ class _CreatePageState extends State<CreatePage> {
                   height: 36,
                 ),
                 Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 326,
-                        height: 45,
-                        child: OutlinedButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(11))),
-                              side: MaterialStateProperty.all<BorderSide>(
-                                const BorderSide(
-                                  color: Color.fromRGBO(67, 197, 158, 1),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: const Text(
-                              'Preview',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(67, 197, 158, 1),
-                                  fontSize: 16,
-                                  fontFamily: 'Bitter',
-                                  fontWeight: FontWeight.w500),
-                            )),
-                      ),
-                     const SizedBox(
-                        height: 34,
-                      ),
-                      GestureDetector(
+                  child:   GestureDetector(
                         onTap: (){
                           // to publish
                         },
@@ -261,8 +231,6 @@ class _CreatePageState extends State<CreatePage> {
                           )),
                         ),
                       )
-                    ],
-                  ),
                 ),
               ],
             ),

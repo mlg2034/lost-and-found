@@ -40,13 +40,13 @@ class RegistrationScreen extends StatelessWidget {
                           child:
                               Image.asset('assets/images/VectorRectangle.png')),
                     ),
-                  const  Padding(
+                    const Padding(
                       padding: const EdgeInsets.only(top: 252),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Column(
                           children: [
-                             Center(
+                            Center(
                               child: Text(
                                 'Registration',
                                 style: TextStyle(
@@ -57,7 +57,7 @@ class RegistrationScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                             SizedBox(
+                            SizedBox(
                               height: 33,
                             ),
                             CustomTextField(
@@ -78,9 +78,15 @@ class RegistrationScreen extends StatelessWidget {
                             const SizedBox(
                               height: 21,
                             ),
-                            CustomTextFieldForPassword(passwordTextField: 'Password',) , 
-                           const SizedBox(height: 21,),
-                            CustomTextFieldForPassword(passwordTextField: 'ConfirmPassword',)
+                            CustomTextFieldForPassword(
+                              passwordTextField: 'Password',
+                            ),
+                            const SizedBox(
+                              height: 21,
+                            ),
+                            CustomTextFieldForPassword(
+                              passwordTextField: 'ConfirmPassword',
+                            )
                           ],
                         ),
                       ),
@@ -95,4 +101,3 @@ class RegistrationScreen extends StatelessWidget {
     );
   }
 }
-
