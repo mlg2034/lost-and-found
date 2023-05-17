@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -20,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
     type: MaskAutoCompletionType.lazy,
   );
   final formGlobalKey = GlobalKey<FormState>();
+  bool isCodeRequested = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,87 +111,102 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 52),
-                            child: Form(
-                              key: formGlobalKey,
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    maxLength: 4,
-                                    textAlign: TextAlign.center,
-                                    cursorColor:
-                                        Color.fromRGBO(67, 197, 158, 1),
-                                    decoration: InputDecoration(
-                                      alignLabelWithHint: true,
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                67, 197, 158, 1)),
-                                        borderRadius: BorderRadius.circular(11),
+                          Visibility(
+                            visible: isCodeRequested,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 52),
+                              child: Form(
+                                key: formGlobalKey,
+                                child: Column(
+                                  children: [
+                                    TextFormField(
+                                      maxLength: 4,
+                                      textAlign: TextAlign.center,
+                                      cursorColor:
+                                          Color.fromRGBO(67, 197, 158, 1),
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Color.fromRGBO(
+                                                  67, 197, 158, 1)),
+                                          borderRadius:
+                                              BorderRadius.circular(11),
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(11),
+                                          borderSide: const BorderSide(
+                                              color: Color.fromRGBO(
+                                                  194, 194, 194, 1)),
+                                        ),
+                                        hintText: '__ __ __ __  ',
+                                        hintStyle: const TextStyle(
+                                          color:
+                                              Color.fromRGBO(194, 194, 194, 1),
+                                          fontFamily: 'Bitter',
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14,
+                                        ),
+                                        prefixStyle: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Bitter',
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 6.0, horizontal: 10),
                                       ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(11),
-                                        borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                194, 194, 194, 1)),
-                                      ),
-                                      hintText: '__ __ __ __  ',
-                                      hintStyle: const TextStyle(
-                                        color: Color.fromRGBO(194, 194, 194, 1),
-                                        fontFamily: 'Bitter',
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14,
-                                      ),
-                                      prefixStyle: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Bitter',
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              vertical: 6.0, horizontal: 10),
+                                      keyboardType: TextInputType.phone,
                                     ),
-                                    keyboardType: TextInputType.phone,
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  SizedBox(
-                                    height: 45,
-                                    width: 246,
-                                    child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(11),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 45,
+                                      width: 246,
+                                      child: OutlinedButton(
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(11),
+                                              ),
+                                            ),
+                                            side: MaterialStateProperty.all<
+                                                BorderSide>(
+                                              const BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      67, 197, 158, 1)),
                                             ),
                                           ),
-                                          side: MaterialStateProperty.all<
-                                              BorderSide>(
-                                            const BorderSide(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MenuPage()));
+                                            if (!isCodeRequested) {
+                                              setState(() {
+                                                isCodeRequested = true;
+
+                                              });
+                                            }
+                                          },
+                                          child: const Text(
+                                            'Continue',
+                                            style: TextStyle(
                                                 color: Color.fromRGBO(
-                                                    67, 197, 158, 1)),
-                                          ),
-                                        ),
-                                        onPressed: () => Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MenuPage())),
-                                        child: const Text(
-                                          'Continue',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  67, 197, 158, 1),
-                                              fontSize: 16,
-                                              fontFamily: 'Bitter',
-                                              fontWeight: FontWeight.w400),
-                                        )),
-                                  )
-                                ],
+                                                    67, 197, 158, 1),
+                                                fontSize: 16,
+                                                fontFamily: 'Bitter',
+                                                fontWeight: FontWeight.w400),
+                                          )),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
