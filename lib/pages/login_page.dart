@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:tamyrlan/pages/menu_page.dart';
 
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with InputValidationMixin {
+class _LoginPageState extends State<LoginPage> {
   final maskFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
@@ -73,12 +74,6 @@ class _LoginPageState extends State<LoginPage> with InputValidationMixin {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 52),
                             child: TextFormField(
-                              validator: (email) {
-                                if (isEmailValid(email!))
-                                  return null;
-                                else
-                                  return 'Enter a valid Email ';
-                              },
                               cursorColor: Color.fromRGBO(67, 197, 158, 1),
                               decoration: InputDecoration(
                                 focusedBorder: OutlineInputBorder(
@@ -119,13 +114,8 @@ class _LoginPageState extends State<LoginPage> with InputValidationMixin {
                               child: Column(
                                 children: [
                                   TextFormField(
+                                    maxLength: 4,
                                     textAlign: TextAlign.center,
-                                    validator: (password) {
-                                      if (isPasswordValid(password!))
-                                        return null;
-                                      else
-                                        return 'Enter a valid password';
-                                    },
                                     cursorColor:
                                         Color.fromRGBO(67, 197, 158, 1),
                                     decoration: InputDecoration(
@@ -161,47 +151,45 @@ class _LoginPageState extends State<LoginPage> with InputValidationMixin {
                                     ),
                                     keyboardType: TextInputType.phone,
                                   ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 45,
+                                    width: 246,
+                                    child: OutlinedButton(
+                                        style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(11),
+                                            ),
+                                          ),
+                                          side: MaterialStateProperty.all<
+                                              BorderSide>(
+                                            const BorderSide(
+                                                color: Color.fromRGBO(
+                                                    67, 197, 158, 1)),
+                                          ),
+                                        ),
+                                        onPressed: () => Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MenuPage())),
+                                        child: const Text(
+                                          'Continue',
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  67, 197, 158, 1),
+                                              fontSize: 16,
+                                              fontFamily: 'Bitter',
+                                              fontWeight: FontWeight.w400),
+                                        )),
+                                  )
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          SizedBox(
-                            height: 45,
-                            width: 246,
-                            child: OutlinedButton(
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(11),
-                                    ),
-                                  ),
-                                  side: MaterialStateProperty.all<BorderSide>(
-                                    const BorderSide(
-                                        color: Color.fromRGBO(67, 197, 158, 1)),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  if (formGlobalKey.currentState!.validate()) {
-                                    formGlobalKey.currentState!.save();
-                                  }
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => MenuPage(),
-                                    ),
-                                  );
-                                },
-                                child: const Text(
-                                  'Continue',
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(67, 197, 158, 1),
-                                      fontSize: 16,
-                                      fontFamily: 'Bitter',
-                                      fontWeight: FontWeight.w400),
-                                )),
                           ),
                         ],
                       ),
@@ -223,25 +211,19 @@ class _LoginPageState extends State<LoginPage> with InputValidationMixin {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 666),
+                      child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Image.asset('assets/images/green_circle.png')),
+                    ),
                   ],
                 ),
-                
               ],
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-mixin InputValidationMixin {
-  bool isPasswordValid(String password) => password.length == 4;
-
-  bool isEmailValid(String email) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = RegExp(pattern.toString());
-    return regex.hasMatch(email);
   }
 }
