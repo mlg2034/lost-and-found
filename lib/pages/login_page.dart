@@ -1,21 +1,39 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:tamyrlan/bloc/login/login_bloc.dart';
+import 'package:tamyrlan/domain/repository/auth_repository.dart';
 import 'package:tamyrlan/pages/menu_page.dart';
 
 import '../widgets/custom_text_field_for_password.dart';
 import '../widgets/cutom_text_field.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LoginBloc(context.read<AuthRepository>()),
+      child: LoginView(),
+    );
+  }
+
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginView extends StatefulWidget{
+
+  @override
+  State<StatefulWidget> createState() {
+    return _LoginPageState();
+  }
+}
+
+class _LoginPageState extends State<LoginView> {
   final maskFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
@@ -23,6 +41,13 @@ class _LoginPageState extends State<LoginPage> {
   );
   final formGlobalKey = GlobalKey<FormState>();
   bool isCodeRequested = false;
+  late LoginBloc _bloc;
+
+  @override
+  void initState() {
+    _bloc = context.read<LoginBloc>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,16 +136,15 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Visibility(
-                            visible: isCodeRequested,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 52),
-                              child: Form(
-                                key: formGlobalKey,
-                                child: Column(
-                                  children: [
-                                    TextFormField(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 52),
+                            child: Form(
+                              key: formGlobalKey,
+                              child: Column(
+                                children: [
+                                  Visibility(
+                                    visible: isCodeRequested,
+                                    child: TextFormField(
                                       maxLength: 4,
                                       textAlign: TextAlign.center,
                                       cursorColor:
@@ -161,52 +185,52 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       keyboardType: TextInputType.phone,
                                     ),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    SizedBox(
-                                      height: 45,
-                                      width: 246,
-                                      child: OutlinedButton(
-                                          style: ButtonStyle(
-                                            shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(11),
-                                              ),
-                                            ),
-                                            side: MaterialStateProperty.all<
-                                                BorderSide>(
-                                              const BorderSide(
-                                                  color: Color.fromRGBO(
-                                                      67, 197, 158, 1)),
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  SizedBox(
+                                    height: 45,
+                                    width: 246,
+                                    child: OutlinedButton(
+                                        style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(11),
                                             ),
                                           ),
-                                          onPressed: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        MenuPage()));
-                                            if (!isCodeRequested) {
-                                              setState(() {
-                                                isCodeRequested = true;
-
-                                              });
-                                            }
-                                          },
-                                          child: const Text(
-                                            'Continue',
-                                            style: TextStyle(
+                                          side: MaterialStateProperty.all<
+                                              BorderSide>(
+                                            const BorderSide(
                                                 color: Color.fromRGBO(
-                                                    67, 197, 158, 1),
-                                                fontSize: 16,
-                                                fontFamily: 'Bitter',
-                                                fontWeight: FontWeight.w400),
-                                          )),
-                                    )
-                                  ],
-                                ),
+                                                    67, 197, 158, 1)),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MenuPage()));
+                                          if (!isCodeRequested) {
+
+                                            setState(() {
+                                              isCodeRequested = true;
+                                            });
+                                          }
+                                        },
+                                        child: const Text(
+                                          'Continue',
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  67, 197, 158, 1),
+                                              fontSize: 16,
+                                              fontFamily: 'Bitter',
+                                              fontWeight: FontWeight.w400),
+                                        )),
+                                  )
+                                ],
                               ),
                             ),
                           ),
@@ -244,5 +268,21 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void _stateListener(BuildContext context, LoginState state) {
+    if (state.failureMessage != null) {
+      Fluttertoast.showToast(msg: state.failureMessage!);
+    }
+    if (state.state == LoginStateType.codeAccepted) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const PositionTypePage(),
+      ));
+    } else if (state.state == AuthStateType.isProgress) {
+      setState(() => isPending = true);
+    } else if (state.state == AuthStateType.initial ||
+        state.state == AuthStateType.success) {
+      setState(() => isPending = false);
+    }
   }
 }
