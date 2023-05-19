@@ -13,16 +13,21 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  _getFromGallery() async {
+  File? _imageFile;
+
+  Future<void> _getFromGallery() async {
     PickedFile? pickedFile = await ImagePicker().getImage(
-        source: ImageSource.gallery,
-        maxWidth: 139,
-        maxHeight: double.infinity,
+      source: ImageSource.gallery,
+      maxWidth:double.infinity ,
+      maxHeight:139 ,
     );
+
     if (pickedFile != null) {
-        File imageFile = File(pickedFile.path);
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
     }
-}
+  }
 
   final maskFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
@@ -53,15 +58,20 @@ class _CreatePageState extends State<CreatePage> {
                 const SizedBox(
                   height: 14,
                 ),
-                SizedBox(
-                    height: 139,
-                    width: 375,
-                    child: GestureDetector(
-                      onTap: () {
-                        _getFromGallery();
-                      },
-                      child: Image.asset('assets/images/imagePicker.png'),
-                    )),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: SizedBox(
+                      height: 139,
+                      width: 375,
+                      child: GestureDetector(
+                        onTap: () {
+                          _getFromGallery();
+                        },
+                        child: _imageFile != null
+                            ? Image.file(_imageFile! , fit: BoxFit.cover,)
+                            : Image.asset('assets/images/imagePicker.png' ,fit: BoxFit.cover,),
+                      )),
+                ),
                 const SizedBox(
                   height: 12,
                 ),
@@ -112,9 +122,7 @@ class _CreatePageState extends State<CreatePage> {
                   height: 28,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    _getFromGallery();
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(194, 194, 194, 1),
