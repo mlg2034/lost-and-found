@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:tamyrlan/widgets/custom_search_text_fied.dart';
 import 'package:tamyrlan/widgets/cutom_text_field.dart';
 
 class CreatePage extends StatefulWidget {
@@ -11,6 +13,17 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+        source: ImageSource.gallery,
+        maxWidth: 139,
+        maxHeight: double.infinity,
+    );
+    if (pickedFile != null) {
+        File imageFile = File(pickedFile.path);
+    }
+}
+
   final maskFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
@@ -41,14 +54,14 @@ class _CreatePageState extends State<CreatePage> {
                   height: 14,
                 ),
                 SizedBox(
-                  height: 139,
-                  width: 375,
-                  child: GestureDetector(
+                    height: 139,
+                    width: 375,
+                    child: GestureDetector(
                       onTap: () {
-                        //image picker
+                        _getFromGallery();
                       },
-                      child: Image.asset('assets/images/imagePicker.png')),
-                ),
+                      child: Image.asset('assets/images/imagePicker.png'),
+                    )),
                 const SizedBox(
                   height: 12,
                 ),
@@ -100,7 +113,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // navigate to location
+                    _getFromGallery();
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -210,28 +223,27 @@ class _CreatePageState extends State<CreatePage> {
                   height: 36,
                 ),
                 Center(
-                  child:   GestureDetector(
-                        onTap: (){
-                          // to publish
-                        },
-                        child: Container(
-                          width: 326,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(67, 197, 158, 1),
-                              borderRadius: BorderRadius.circular(11)),
-                          child: const Center(
-                              child: Text(
-                            'Publish',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Bitter',
-                                fontWeight: FontWeight.w500),
-                          )),
-                        ),
-                      )
-                ),
+                    child: GestureDetector(
+                  onTap: () {
+                    // to publish
+                  },
+                  child: Container(
+                    width: 326,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(67, 197, 158, 1),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: const Center(
+                        child: Text(
+                      'Publish',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Bitter',
+                          fontWeight: FontWeight.w500),
+                    )),
+                  ),
+                )),
               ],
             ),
           ),

@@ -4,4 +4,15 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    
 </manifest>
+<application
+        android:requestLegacyExternalStorage="true"
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="xxxxxx"
+        android:icon="@mipmap/launcher_icon">
+        <activity>
+                ...
+                ...
+        </activity>
+</application>

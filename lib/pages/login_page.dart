@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     type: MaskAutoCompletionType.lazy,
   );
   final formGlobalKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Lost & Found',
                             style: TextStyle(
                                 color: Color.fromRGBO(67, 197, 158, 1),
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                                     maxLength: 4,
                                     textAlign: TextAlign.center,
                                     cursorColor:
-                                        Color.fromRGBO(67, 197, 158, 1),
+                                        const Color.fromRGBO(67, 197, 158, 1),
                                     decoration: InputDecoration(
                                       alignLabelWithHint: true,
                                       focusedBorder: OutlineInputBorder(
@@ -152,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                                     keyboardType: TextInputType.phone,
                                   ),
                                   const SizedBox(
-                                    height: 30,
+                                    height: 10,
                                   ),
                                   SizedBox(
                                     height: 45,
@@ -186,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                                               fontFamily: 'Bitter',
                                               fontWeight: FontWeight.w400),
                                         )),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -195,13 +196,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 590),
+                      padding: const EdgeInsets.only(top: 610),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: Transform.rotate(
                           angle: 3.138,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 90),
+                            padding: const EdgeInsets.only(top: 20),
                             child: Image.asset(
                               'assets/images/Vectorcorner.png',
                               width: 273,
