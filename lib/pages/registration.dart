@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/custom_text_field_for_password.dart';
-import '../widgets/cutom_text_field.dart';
+import '../widgets/text_field_widget/custom_text_field_for_password.dart';
+import '../widgets/text_field_widget/cutom_text_field.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+   RegistrationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final textController = TextEditingController();
     return Scaffold(
       body: Stack(
         children: [
@@ -40,7 +41,7 @@ class RegistrationScreen extends StatelessWidget {
                           child:
                               Image.asset('assets/images/VectorRectangle.png')),
                     ),
-                    const Padding(
+                     Padding(
                       padding: const EdgeInsets.only(top: 252),
                       child: Align(
                         alignment: Alignment.topCenter,
@@ -61,19 +62,20 @@ class RegistrationScreen extends StatelessWidget {
                               height: 33,
                             ),
                             CustomTextField(
-                              textFieldName: 'First Name',
+                              textFieldName: 'First Name', textEditingController: textController,
                             ),
                             const SizedBox(
                               height: 21,
                             ),
                             CustomTextField(
-                              textFieldName: 'Last  Name',
+
+                              textFieldName: 'Last  Name', textEditingController: textController,
                             ),
                             const SizedBox(
                               height: 21,
                             ),
                             CustomTextField(
-                              textFieldName: 'Email or phone number',
+                              textFieldName: 'Email or phone number', textEditingController: textController ,
                             ),
                             const SizedBox(
                               height: 21,

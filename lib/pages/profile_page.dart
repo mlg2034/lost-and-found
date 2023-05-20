@@ -1,6 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/pages/login_page.dart';
+
+import '../widgets/text_widgets/custom_text_change_widget.dart';
+import '../widgets/text_widgets/custom_text_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -10,6 +17,22 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  File? _imageFile;
+
+  Future<void> _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: double.infinity,
+      maxHeight: 139,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -31,12 +54,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    //to change avatar
+                    _getFromGallery();
                   },
                   child: CircleAvatar(
                     backgroundColor: Color.fromRGBO(100, 93, 215, 1),
                     radius: 68,
-                    backgroundImage: AssetImage('assets/images/avatar.png'),
+                    backgroundImage: _imageFile != null
+                        ? Image.file(_imageFile!, fit: BoxFit.cover).image
+                        : AssetImage('assets/images/avatar.png'),
                   ),
                 ),
               ),
@@ -124,13 +149,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  'example@gmail.com',
-                  style: TextStyle(
-                      fontFamily: 'Bitter',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
+                CustomTextWidget(title: 'example@gmail.com',),
                 const SizedBox(
                   height: 3,
                 ),
@@ -138,28 +157,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to change a email
                   },
-                  child: const Text(
-                    'Click to change email',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1,
-                        decorationColor: Color.fromRGBO(135, 131, 131, 1),
-                        fontFamily: 'Bitter',
-                        fontWeight: FontWeight.w200,
-                        fontSize: 13,
-                        color: Color.fromRGBO(135, 131, 131, 1)),
-                  ),
+                  child: CustomChangeTextWidget(changeTitle: 'Click to change email',),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  '+7 (777) 777 77 77',
-                  style: TextStyle(
-                      fontFamily: 'Bitter',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
+                CustomTextWidget(title: '+7 (777) 777 77 77'),
                 const SizedBox(
                   height: 3,
                 ),
@@ -167,39 +170,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to change a phone
                   },
-                  child: const Text(
-                    'Click to change phone number',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1,
-                        decorationColor: Color.fromRGBO(135, 131, 131, 1),
-                        fontFamily: 'Bitter',
-                        fontWeight: FontWeight.w200,
-                        fontSize: 13,
-                        color: Color.fromRGBO(135, 131, 131, 1)),
-                  ),
+                  child:CustomChangeTextWidget(changeTitle: 'Click to change phone number',),
                 ),
                 const SizedBox(
                   height: 23,
                 ),
-                const Text(
-                  'Payments',
-                  style: TextStyle(
-                    fontFamily: 'Bitter',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                  ),
-                ),
+                CustomTextWidget(title: 'Payments'),
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  'Wallet',
-                  style: TextStyle(
-                      fontFamily: 'Bitter',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
+                CustomTextWidget(title: 'Wallet'),
                 const SizedBox(
                   height: 3,
                 ),
@@ -207,28 +187,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to view bonuses
                   },
-                  child: const Text(
-                    'Click to view bonuses',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1,
-                        decorationColor: Color.fromRGBO(135, 131, 131, 1),
-                        fontFamily: 'Bitter',
-                        fontWeight: FontWeight.w200,
-                        fontSize: 13,
-                        color: Color.fromRGBO(135, 131, 131, 1)),
-                  ),
+                  child: CustomChangeTextWidget(changeTitle: 'Click to view bonuses',),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                const Text(
-                  'Payment Card',
-                  style: TextStyle(
-                      fontFamily: 'Bitter',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
+               CustomTextWidget(title: 'Payment Card'),
                 const SizedBox(
                   height: 3,
                 ),
@@ -236,17 +200,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to view bonuses
                   },
-                  child: const Text(
-                    'Click to link payment card',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 1,
-                        decorationColor: Color.fromRGBO(135, 131, 131, 1),
-                        fontFamily: 'Bitter',
-                        fontWeight: FontWeight.w200,
-                        fontSize: 13,
-                        color: Color.fromRGBO(135, 131, 131, 1)),
-                  ),
+                  child: CustomChangeTextWidget(changeTitle: 'Click to link payment card',),
                 ),
                 const SizedBox(
                   height: 23,
@@ -336,16 +290,16 @@ class _ProfilePageState extends State<ProfilePage> {
                               MaterialPageRoute(
                                 builder: (context) => LoginPage(),
                               ),
-                          );
+                            );
                           },
-                          child: Text(
+                          child:const Text(
                             'Log Out',
                             style: TextStyle(
                                 color: Colors.red,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ))),
-                )
+                ),
               ],
             ),
           )
@@ -354,3 +308,4 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
+
