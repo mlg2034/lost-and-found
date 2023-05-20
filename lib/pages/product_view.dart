@@ -148,7 +148,7 @@ class _ProductViewState extends State<ProductView> {
                             },
                             child: SizedBox(
                               height: 76,
-                              width: 312,
+                              width: 260,
                               child: Image.asset('assets/images/carta.png'),
                             ),
                           )
