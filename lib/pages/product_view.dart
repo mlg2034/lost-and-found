@@ -125,11 +125,9 @@ class _ProductViewState extends State<ProductView> {
                           Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 30, left: 15, right: 15),
-                               
+                                  padding: const EdgeInsets.only(
+                                      top: 30, left: 15, right: 15),
                                   child: Image.asset('assets/images/pin.png')),
-                              
                               const SizedBox(
                                 height: 3,
                               ),
@@ -143,11 +141,13 @@ class _ProductViewState extends State<ProductView> {
                             ],
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MapPage()));
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => MapPage()));
                             },
                             child: SizedBox(
-                              height: 76  ,
+                              height: 76,
                               width: 312,
                               child: Image.asset('assets/images/carta.png'),
                             ),

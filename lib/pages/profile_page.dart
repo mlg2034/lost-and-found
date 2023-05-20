@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/pages/login_page.dart';
+import 'package:tamyrlan/pages/profile_edit_page.dart';
 
 import '../widgets/text_widgets/custom_text_change_widget.dart';
 import '../widgets/text_widgets/custom_text_widget.dart';
@@ -61,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     radius: 68,
                     backgroundImage: _imageFile != null
                         ? Image.file(_imageFile!, fit: BoxFit.cover).image
-                        : AssetImage('assets/images/avatar.png'),
+                        : const AssetImage('assets/images/avatar.png'),
                   ),
                 ),
               ),
@@ -149,7 +149,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 13,
                 ),
-                CustomTextWidget(title: 'example@gmail.com',),
+                CustomTextWidget(
+                  title: 'example@gmail.com',
+                ),
                 const SizedBox(
                   height: 3,
                 ),
@@ -157,7 +159,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to change a email
                   },
-                  child: CustomChangeTextWidget(changeTitle: 'Click to change email',),
+                  child: CustomChangeTextWidget(
+                    changeTitle: 'Click to change email',
+                  ),
                 ),
                 const SizedBox(
                   height: 13,
@@ -170,7 +174,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to change a phone
                   },
-                  child:CustomChangeTextWidget(changeTitle: 'Click to change phone number',),
+                  child: CustomChangeTextWidget(
+                    changeTitle: 'Click to change phone number',
+                  ),
                 ),
                 const SizedBox(
                   height: 23,
@@ -187,12 +193,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to view bonuses
                   },
-                  child: CustomChangeTextWidget(changeTitle: 'Click to view bonuses',),
+                  child: CustomChangeTextWidget(
+                    changeTitle: 'Click to view bonuses',
+                  ),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-               CustomTextWidget(title: 'Payment Card'),
+                CustomTextWidget(title: 'Payment Card'),
                 const SizedBox(
                   height: 3,
                 ),
@@ -200,19 +208,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () {
                     //to view bonuses
                   },
-                  child: CustomChangeTextWidget(changeTitle: 'Click to link payment card',),
+                  child: CustomChangeTextWidget(
+                    changeTitle: 'Click to link payment card',
+                  ),
                 ),
                 const SizedBox(
                   height: 23,
                 ),
-                const Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontFamily: 'Bitter',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                  ),
-                ),
+                CustomTextWidget(title: 'Settings'),
                 const SizedBox(
                   height: 23,
                 ),
@@ -280,6 +283,35 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProfileEditPage()));
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          width: 13,
+                          height: 12,
+                          child: Image.asset('assets/images/edit.png')),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      const Text(
+                        'Edit',
+                        style: TextStyle(
+                          fontFamily: 'Bitter',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Align(
@@ -292,7 +324,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             );
                           },
-                          child:const Text(
+                          child: const Text(
                             'Log Out',
                             style: TextStyle(
                                 color: Colors.red,
@@ -308,4 +340,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
