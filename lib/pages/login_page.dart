@@ -1,233 +1,160 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:tamyrlan/pages/menu_page.dart';
+import 'package:tamyrlan/pages/profile_page.dart';
 
-import '../widgets/custom_text_field_for_password.dart';
-import '../widgets/cutom_text_field.dart';
+import '../widgets/custom_search_text_fied.dart';
+import 'product_view.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final maskFormatter = MaskTextInputFormatter(
-    mask: '+7 (###) ###-##-##',
-    filter: {"#": RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy,
-  );
-  final formGlobalKey = GlobalKey<FormState>();
+class _HomePageState extends State<HomePage> {
+ bool _isFocused = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    Transform.rotate(
-                      angle: 0.443,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Transform.rotate(
-                          angle: -0.443,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 90),
-                            child: Image.asset(
-                              'assets/images/Vectorcorner.png',
-                              width: 273,
-                              height: 273,
-                            ),
+      body: Stack(children: [
+        AnimatedContainer(
+          duration:const Duration(microseconds: 100),
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 63),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap:(){
+                      setState(() {
+                        _isFocused = true;
+                      });
+                    } ,
+                    child: CustomSearchTextField(textHint: 'S e a r c h . . .',)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 18,
+                    width: 118,
+                    child: OutlinedButton(
+                        style: ButtonStyle(
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                color: Color.fromRGBO(100, 93, 215, 1)),
                           ),
                         ),
-                      ),
+                        onPressed: () {},
+                        child: const Text(
+                          'Astana',
+                          style: TextStyle(
+                              color: const Color.fromRGBO(100, 93, 215, 1),
+                              fontSize: 12,
+                              fontFamily: 'Bitter',
+                              fontWeight: FontWeight.w400),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 28,
+                  ),
+                  Container(
+                    height: 227,
+                    width: 180,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 166, left: 66),
-                      child: Align(
-                          alignment: Alignment.topLeft,
-                          child:
-                              Image.asset('assets/images/VectorRectangle.png')),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 373,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Lost & Found',
-                            style: TextStyle(
-                                color: Color.fromRGBO(67, 197, 158, 1),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 52),
-                            child: TextFormField(
-                              cursorColor: Color.fromRGBO(67, 197, 158, 1),
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Color.fromRGBO(67, 197, 158, 1)),
-                                    borderRadius: BorderRadius.circular(11)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                    borderSide: const BorderSide(
-                                        color:
-                                            Color.fromRGBO(194, 194, 194, 1))),
-                                hintText: '+7 (XXX) XXX XX XX',
-                                hintStyle: const TextStyle(
-                                  color: Color.fromRGBO(194, 194, 194, 1),
-                                  fontFamily: 'Bitter',
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 14,
-                                ),
-                                prefixStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                            height: 115,
+                            width: 180,
+                            child: InkWell(
+                                onTap: ()async {
+                                await  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ProductView()));
+                                },
+                                child: Image.asset('assets/images/AirPods.png'))),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Airpods Pro Lost',
+                                style: TextStyle(
+                                    fontFamily: 'Bitter',
                                     fontWeight: FontWeight.w400,
-                                    fontFamily: 'Bitter'),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    vertical: 6.0, horizontal: 10),
+                                    fontSize: 16),
                               ),
-                              keyboardType: TextInputType.phone,
-                              inputFormatters: [maskFormatter],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 52),
-                            child: Form(
-                              key: formGlobalKey,
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    maxLength: 4,
-                                    textAlign: TextAlign.center,
-                                    cursorColor:
-                                        const Color.fromRGBO(67, 197, 158, 1),
-                                    decoration: InputDecoration(
-                                      alignLabelWithHint: true,
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                67, 197, 158, 1)),
-                                        borderRadius: BorderRadius.circular(11),
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(11),
-                                        borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                194, 194, 194, 1)),
-                                      ),
-                                      hintText: '__ __ __ __  ',
-                                      hintStyle: const TextStyle(
-                                        color: Color.fromRGBO(194, 194, 194, 1),
-                                        fontFamily: 'Bitter',
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14,
-                                      ),
-                                      prefixStyle: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Bitter',
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              vertical: 6.0, horizontal: 10),
-                                    ),
-                                    keyboardType: TextInputType.phone,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                    height: 45,
-                                    width: 246,
-                                    child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(11),
-                                            ),
-                                          ),
-                                          side: MaterialStateProperty.all<
-                                              BorderSide>(
-                                            const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    67, 197, 158, 1)),
-                                          ),
-                                        ),
-                                        onPressed: () => Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MenuPage())),
-                                        child: const Text(
-                                          'Continue',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  67, 197, 158, 1),
-                                              fontSize: 16,
-                                              fontFamily: 'Bitter',
-                                              fontWeight: FontWeight.w400),
-                                        )),
-                                  ),
-                                ],
+                              SizedBox(
+                                height: 16,
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 610),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Transform.rotate(
-                          angle: 3.138,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Expanded
-                            (
-                              child: Image.asset(
-                                'assets/images/Vectorcorner.png',
-                                width: 273,
-                                height: 273,
+                              Text(
+                                'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
+                                style: TextStyle(
+                                    fontFamily: 'Bitter',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w300),
                               ),
-                            ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Text(
+                                  '24.05.2034',
+                                  style: TextStyle(
+                                      fontFamily: 'Bitter',
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300,
+                                      color: Color.fromRGBO(135, 131, 131, 1)),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 666),
-                      child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Image.asset('assets/images/green_circle.png')),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ],
-      ),
+        )
+      ]
+          // bottomNavigationBar: BottomNavigationBar(
+          //   items: [
+          //     BottomNavigationBarItem(
+          //       icon: _selectedIndex == 0
+          //           ? Image.asset('assets/images/activate_home.png')
+          //           : Image.asset('assets/images/home.png'),
+          //       label: 'Home',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: _selectedIndex == 1
+          //           ? Image.asset('assets/images/activate_create.png')
+          //           : Image.asset('assets/images/create.png'),
+          //       label: 'Create',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: _selectedIndex == 2
+          //           ? Image.asset('assets/images/activate_user.png')
+          //           : Image.asset('assets/images/user.png'),
+          //       label: 'Profile',
+          //     ),
+          //   ],
+          //   onTap: _onItemTapped,
+          //   selectedItemColor: const Color.fromRGBO(100, 93, 215, 1),
+          //   currentIndex: _selectedIndex,
+          //   selectedLabelStyle:
+          //       const TextStyle(color: Color.fromRGBO(100, 93, 215, 1)),
+          //   unselectedLabelStyle:
+          //       const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
+          //       showUnselectedLabels: true,
+          // ),
+          ),
     );
   }
 }

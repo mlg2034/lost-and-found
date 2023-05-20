@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tamyrlan/pages/profile_page.dart';
 
-import '../widgets/custom_search_text_fied.dart';
+import '../widgets/text_field_widget/custom_search_text_fied.dart';
 import 'product_view.dart';
 
 class HomePage extends StatefulWidget {
