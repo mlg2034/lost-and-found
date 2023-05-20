@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tamyrlan/pages/create_page.dart';
+import 'package:tamyrlan/pages/home_page.dart';
 import 'package:tamyrlan/pages/profile_page.dart';
-
-import 'home_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -12,12 +11,13 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     CreatePage(),
     ProfilePage()
   ];
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
