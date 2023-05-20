@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   height: 28,
                 ),
                 Container(
-                  height: 227,
+                  height: 236,
                   width: 180,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
@@ -123,36 +123,7 @@ class _HomePageState extends State<HomePage> {
         ),
       )
     ]
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: [
-        //     BottomNavigationBarItem(
-        //       icon: _selectedIndex == 0
-        //           ? Image.asset('assets/images/activate_home.png')
-        //           : Image.asset('assets/images/home.png'),
-        //       label: 'Home',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: _selectedIndex == 1
-        //           ? Image.asset('assets/images/activate_create.png')
-        //           : Image.asset('assets/images/create.png'),
-        //       label: 'Create',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: _selectedIndex == 2
-        //           ? Image.asset('assets/images/activate_user.png')
-        //           : Image.asset('assets/images/user.png'),
-        //       label: 'Profile',
-        //     ),
-        //   ],
-        //   onTap: _onItemTapped,
-        //   selectedItemColor: const Color.fromRGBO(100, 93, 215, 1),
-        //   currentIndex: _selectedIndex,
-        //   selectedLabelStyle:
-        //       const TextStyle(color: Color.fromRGBO(100, 93, 215, 1)),
-        //   unselectedLabelStyle:
-        //       const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
-        //       showUnselectedLabels: true,
-        // ),
+      
         );
   }
 }

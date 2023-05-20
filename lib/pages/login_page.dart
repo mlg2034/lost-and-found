@@ -203,10 +203,13 @@ class _LoginPageState extends State<LoginPage> {
                           angle: 3.138,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20),
-                            child: Image.asset(
-                              'assets/images/Vectorcorner.png',
-                              width: 273,
-                              height: 273,
+                            child: Expanded
+                            (
+                              child: Image.asset(
+                                'assets/images/Vectorcorner.png',
+                                width: 273,
+                                height: 273,
+                              ),
                             ),
                           ),
                         ),

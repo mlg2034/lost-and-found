@@ -6,6 +6,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
+         useMaterial3: true,
         fontFamily: 'Bitter',
         primaryColor: const Color.fromRGBO(100, 93, 215, 1),
       ),
