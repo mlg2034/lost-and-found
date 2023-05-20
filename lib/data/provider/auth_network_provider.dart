@@ -9,7 +9,7 @@ class AuthNetworkProvider {
   AuthNetworkProvider(this._dio);
 
   Future sendSms(String phone) async {
-    await _dio.post('/api/accounts/verify-phone/', data: {'phone': phone});
+    await _dio.post('api_user/verify_phone/', data: {'phone': phone});
   }
 
   Future<RegistrationResponse> startUser() async {
@@ -28,9 +28,9 @@ class AuthNetworkProvider {
     return RegistrationResponse(user, token);
   }
 
-  Future<RegistrationResponse> verifyCode(String phone, String code) async {
+  Future<RegistrationResponse> verifyCode(String phone, int code) async {
     final response = await _dio.post(
-      '/api/accounts/register/',
+      '/api_user/register/',
       data: {'phone': phone, 'code': code},
     );
     dynamic userData = response.data['user'];

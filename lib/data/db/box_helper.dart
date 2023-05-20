@@ -10,6 +10,10 @@ class BoxHelper {
     return box.get(Hives.keyToken) != null;
   }
 
+  static void saveToken(TokenEntity token) {
+    Hive.box<TokenEntity>(Hives.boxToken).put(Hives.keyToken, token);
+  }
+
   static bool isLoggedIn() {
     return Hive.box(Hives.boxSettings)
         .get(Hives.keyIsLoggedIn, defaultValue: false);

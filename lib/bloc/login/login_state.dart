@@ -1,6 +1,6 @@
 part of 'login_bloc.dart';
 
-enum LoginStatus { initial, inProgress, successful, failure }
+enum LoginStatus { initial, inProgress, codeRequested, successful, failure }
 
 class LoginState extends Equatable {
   final LoginStatus status;

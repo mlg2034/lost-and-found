@@ -14,7 +14,7 @@ class DataAuthRepository extends AuthRepository {
   }
 
   @override
-  Future verifyCode(String phone, String code) async {
+  Future verifyCode(String phone, int code) async {
     final response = await _authNetworkProvider.verifyCode(phone, code);
     GetIt.I<Fresh>().setToken(OAuth2Token(
       accessToken: response.token.access,
@@ -22,12 +22,12 @@ class DataAuthRepository extends AuthRepository {
     ));
   }
 
-  @override
-  Future noLoginVerify() async {
-    final response = await _authNetworkProvider.startUser();
-    GetIt.I<Fresh>().setToken(OAuth2Token(
-      accessToken: response.token.access,
-      refreshToken: response.token.refresh,
-    ));
-  }
+  // @override
+  // Future noLoginVerify() async {
+  //   final response = await _authNetworkProvider.startUser();
+  //   GetIt.I<Fresh>().setToken(OAuth2Token(
+  //     accessToken: response.token.access,
+  //     refreshToken: response.token.refresh,
+  //   ));
+  // }
 }

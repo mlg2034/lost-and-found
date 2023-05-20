@@ -18,10 +18,12 @@ class LoginCodeRequested extends LoginEvent {
 
 class CodeSent extends LoginEvent {
   final String phone;
-  final String code;
+  final int code;
 
   const CodeSent(this.phone, this.code);
 
   @override
   List<Object?> get props => [phone, code];
 }
+
+
