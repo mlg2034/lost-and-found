@@ -4,6 +4,7 @@ import 'package:tamyrlan/app.dart';
 import 'package:tamyrlan/pages/login_page.dart';
 import 'package:tamyrlan/pages/menu_page.dart';
 
+
 import 'app_initializer.dart';
 
 void main() async {

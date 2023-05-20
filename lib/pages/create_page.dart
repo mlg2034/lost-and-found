@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:tamyrlan/widgets/custom_search_text_fied.dart';
-import 'package:tamyrlan/widgets/cutom_text_field.dart';
+import 'package:tamyrlan/widgets/text_field_widget/cutom_text_field.dart';
+
+import '../widgets/text_field_widget/custom_phone_text_field.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({super.key});
@@ -11,14 +15,52 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  File? _imageFile;
+
+  Future<void> _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: double.infinity,
+      maxHeight: 139,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+  void _submit(){
+    if(_errorText==null){
+      
+    }
+  }
+
+  final textController = TextEditingController();
   final maskFormatter = MaskTextInputFormatter(
     mask: '+7 (###) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
+  String? get _errorText {
+  // at any time, we can get the text from _controller.value.text
+  final text = textController.value.text;
+  // Note: you can do your own custom validation here
+  // Move this logic this outside the widget for more testable code
+  if (text.isEmpty) {
+    return 'Can\'t be empty';
+  }
+  if (text.length < 4) {
+    return 'Too short';
+  }
+  // return null if the text is valid
+  return null;
+}
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      
       child: Stack(
         children: [
           Padding(
@@ -40,14 +82,27 @@ class _CreatePageState extends State<CreatePage> {
                 const SizedBox(
                   height: 14,
                 ),
-                SizedBox(
-                  height: 139,
-                  width: 375,
-                  child: GestureDetector(
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: SizedBox(
+                    height: 139,
+                    width: 375,
+                    child: GestureDetector(
                       onTap: () {
-                        //image picker
+                        _getFromGallery();
                       },
-                      child: Image.asset('assets/images/imagePicker.png')),
+                      child: _imageFile != null
+                          ? FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.file(_imageFile!),
+                            )
+                          : FittedBox(
+                              fit: BoxFit.cover,
+                              child:
+                                  Image.asset('assets/images/imagePicker.png'),
+                            ),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 12,
@@ -60,7 +115,10 @@ class _CreatePageState extends State<CreatePage> {
                       fontSize: 16,
                       color: Colors.black),
                 ),
-                CustomTextField(textFieldName: 'Write a title of post'),
+                CustomTextField(
+                  textFieldName: 'Write a title of post',
+                  textEditingController: textController,
+                ),
                 const SizedBox(
                   height: 14,
                 ),
@@ -99,9 +157,7 @@ class _CreatePageState extends State<CreatePage> {
                   height: 28,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // navigate to location
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(194, 194, 194, 1),
@@ -146,9 +202,12 @@ class _CreatePageState extends State<CreatePage> {
                 const SizedBox(
                   height: 3,
                 ),
-                const SizedBox(
+                SizedBox(
                     height: 32,
-                    child: CustomTextField(textFieldName: 'Name Surname')),
+                    child: CustomTextField(
+                      textFieldName: 'Name Surname',
+                      textEditingController: textController,
+                    )),
                 const SizedBox(
                   height: 9,
                 ),
@@ -163,9 +222,12 @@ class _CreatePageState extends State<CreatePage> {
                 const SizedBox(
                   height: 3,
                 ),
-                const SizedBox(
+                SizedBox(
                     height: 32,
-                    child: CustomTextField(textFieldName: 'example@gmail.com')),
+                    child: CustomTextField(
+                      textFieldName: 'example@gmail.com',
+                      textEditingController: textController,
+                    )),
                 const SizedBox(
                   height: 9,
                 ),
@@ -177,61 +239,35 @@ class _CreatePageState extends State<CreatePage> {
                       fontSize: 16,
                       color: Colors.black),
                 ),
-                TextField(
-                  cursorColor: Color.fromRGBO(67, 197, 158, 1),
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(67, 197, 158, 1)),
-                        borderRadius: BorderRadius.circular(11)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(194, 194, 194, 1))),
-                    hintText: '+7 (XXX) XXX XX XX',
-                    hintStyle: const TextStyle(
-                      color: Color.fromRGBO(194, 194, 194, 1),
-                      fontFamily: 'Bitter',
-                      fontWeight: FontWeight.w300,
-                      fontSize: 14,
-                    ),
-                    prefixStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Bitter'),
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 10),
-                  ),
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: [maskFormatter],
+                CustomPhoneTextFieldWidget(
+                  maskFormatter: maskFormatter,
+                  textEditingController: textController,
                 ),
                 const SizedBox(
                   height: 36,
                 ),
                 Center(
-                  child:   GestureDetector(
-                        onTap: (){
-                          // to publish
-                        },
-                        child: Container(
-                          width: 326,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(67, 197, 158, 1),
-                              borderRadius: BorderRadius.circular(11)),
-                          child: const Center(
-                              child: Text(
-                            'Publish',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Bitter',
-                                fontWeight: FontWeight.w500),
-                          )),
-                        ),
-                      )
-                ),
+                    child: GestureDetector(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    width: 326,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(67, 197, 158, 1),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: const Center(
+                        child: Text(
+                      'Publish',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Bitter',
+                          fontWeight: FontWeight.w500),
+                    )),
+                  ),
+                )),
               ],
             ),
           ),

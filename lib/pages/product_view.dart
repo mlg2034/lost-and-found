@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamyrlan/pages/create_page.dart';
+import 'package:tamyrlan/pages/map_page.dart';
 import 'package:tamyrlan/pages/profile_page.dart';
 
 import 'home_page.dart';
@@ -123,10 +125,9 @@ class _ProductViewState extends State<ProductView> {
                           Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 30, left: 15, right: 15),
-                                child: Image.asset('assets/images/pin.png'),
-                              ),
+                                  padding: const EdgeInsets.only(
+                                      top: 30, left: 15, right: 15),
+                                  child: Image.asset('assets/images/pin.png')),
                               const SizedBox(
                                 height: 3,
                               ),
@@ -139,10 +140,17 @@ class _ProductViewState extends State<ProductView> {
                               )
                             ],
                           ),
-                          SizedBox(
-                            height: 76,
-                            width: 312,
-                            child: Image.asset('assets/images/carta.png'),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => MapPage()));
+                            },
+                            child: SizedBox(
+                              height: 76,
+                              width: 260,
+                              child: Image.asset('assets/images/carta.png'),
+                            ),
                           )
                         ],
                       ),
