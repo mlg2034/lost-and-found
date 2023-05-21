@@ -93,12 +93,22 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 16,
                             ),
-                            Text(
-                              'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
-                              style: TextStyle(
-                                  fontFamily: 'Bitter',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                                  softWrap: false,
+                                
+                                    'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
+                                    style: TextStyle(
+                                        fontFamily: 'Bitter',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                ),
+                              ],
                             ),
                             Align(
                               alignment: Alignment.bottomRight,

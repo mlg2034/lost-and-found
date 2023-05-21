@@ -93,6 +93,7 @@ class _ProductViewState extends State<ProductView> {
                         height: 12,
                       ),
                       const Text(
+                        
                         'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
                         style: TextStyle(
                             fontFamily: 'Bitter',

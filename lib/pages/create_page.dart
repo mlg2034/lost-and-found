@@ -30,10 +30,9 @@ class _CreatePageState extends State<CreatePage> {
       });
     }
   }
-  void _submit(){
-    if(_errorText==null){
-      
-    }
+
+  void _submit() {
+    if (_errorText == null) {}
   }
 
   final textController = TextEditingController();
@@ -43,24 +42,21 @@ class _CreatePageState extends State<CreatePage> {
     type: MaskAutoCompletionType.lazy,
   );
   String? get _errorText {
-  // at any time, we can get the text from _controller.value.text
-  final text = textController.value.text;
-  // Note: you can do your own custom validation here
-  // Move this logic this outside the widget for more testable code
-  if (text.isEmpty) {
-    return 'Can\'t be empty';
+    final text = textController.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    if (text.length < 4) {
+      return 'Too short';
+    }
+    // return null if the text is valid
+    return null;
   }
-  if (text.length < 4) {
-    return 'Too short';
-  }
-  // return null if the text is valid
-  return null;
-}
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      
       child: Stack(
         children: [
           Padding(
@@ -105,8 +101,58 @@ class _CreatePageState extends State<CreatePage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 12,
+                  height: 20,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        //when Lost
+                      },
+                      child: Container(
+                        width: 146,
+                        height: 35,
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(100, 93, 215, 1),
+                            borderRadius: BorderRadius.circular(7)),
+                        child: Center(
+                          child: Text(
+                            'Lost',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                height: 19.2 / 16),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        //when Found
+                      },
+                      child: Container(
+                        width: 146,
+                        height: 35,
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(135, 131, 131, 0.5),
+                            borderRadius: BorderRadius.circular(7)),
+                        child: Center(
+                          child: Text(
+                            'Found',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                height: 19.2 / 16),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 16,),
                 const Text(
                   'Post title*',
                   style: TextStyle(
@@ -248,9 +294,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 Center(
                     child: GestureDetector(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Container(
                     width: 326,
                     height: 45,

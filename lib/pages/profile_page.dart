@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/pages/login_page.dart';
+import 'package:tamyrlan/pages/post_page.dart';
 import 'package:tamyrlan/pages/profile_edit_page.dart';
 
 import '../widgets/text_widgets/custom_text_change_widget.dart';
@@ -135,8 +136,28 @@ class _ProfilePageState extends State<ProfilePage> {
                 //     )
                 //   ],
                 // ),
-                const SizedBox(
-                  height: 33,
+                const SizedBox(height: 18),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PostsViewPage()));
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 34,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(67, 197, 158, 1),
+                        borderRadius: BorderRadius.circular(7)),
+                    child: Center(
+                        child: Text(
+                      'Your posts',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          height: 19.2 / 16,
+                          fontWeight: FontWeight.w600),
+                    )),
+                  ),
                 ),
                 const Text(
                   'Account',
