@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tamyrlan/domain/model/post.dart';
-import 'package:tamyrlan/pages/profile_page.dart';
 
 import '../bloc/feed/feed_bloc.dart';
 import '../domain/repository/post_repository.dart';
 import '../widgets/text_field_widget/custom_search_text_fied.dart';
-import 'product_view.dart';
+import 'post_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -60,7 +59,7 @@ class _HomePageState extends State<HomeView> {
                           _isFocused = true;
                         });
                       },
-                      child: CustomSearchTextField(
+                      child: const CustomSearchTextField(
                         textHint: 'S e a r c h . . .',
                       )),
                   const SizedBox(
@@ -108,7 +107,8 @@ class _HomePageState extends State<HomeView> {
                           return GridView(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 14.0, vertical: 10.0),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 10.0,
                               mainAxisSpacing: 8.0,
@@ -120,7 +120,6 @@ class _HomePageState extends State<HomeView> {
                       }
                     },
                   ),
-
                 ],
               ),
             ),
@@ -133,69 +132,81 @@ class _HomePageState extends State<HomeView> {
   List<Widget> _getPosts(FeedState state) {
     List<Container> items = [];
     for (Post post in state.posts!) {
-      items.add(Container(
-        height: 236,
-        width: 180,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          color: const Color.fromRGBO(255, 255, 255, 1),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 115,
-              width: 180,
-              child: InkWell(
-                onTap: () async {
-                  await Navigator.of(context).push(
+      items.add(
+        Container(
+          height: 236,
+          width: 180,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
+            color: const Color.fromRGBO(255, 255, 255, 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 115,
+                width: 180,
+                child: InkWell(
+                  onTap: () async {
+                    await Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (context) => ProductView()));
-                },
-                child: Image.network(post.photo ?? ""),
+                        builder: (context) => PostView(post.id),
+                      ),
+                    );
+                  },
+                  child: Image.network(post.photo ?? ""),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    post.title!,
-                    style: const TextStyle(
-                        fontFamily: 'Bitter',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    post.description ?? "",
-                    style: const TextStyle(
-                        fontFamily: 'Bitter',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      post.date ?? "",
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      post.title!,
                       style: const TextStyle(
+                          fontFamily: 'Bitter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            post.description!,
+                            style: const TextStyle(
+                                fontFamily: 'Bitter',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        post.date ?? "",
+                        style: const TextStyle(
                           fontFamily: 'Bitter',
                           fontSize: 10,
                           fontWeight: FontWeight.w300,
                           color: Color.fromRGBO(135, 131, 131, 1),
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),);
+      );
     }
     return items;
   }

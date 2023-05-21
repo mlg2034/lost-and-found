@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class AppInitializer {
-  static const String _host = 'http://10.201.0.175:8000/';
+  static const String _host = 'http://192.168.1.162:8000/';
 
   static Future<Dio> initialize() async {
     await Hive.initFlutter();
@@ -28,7 +28,7 @@ class AppInitializer {
     GetIt.I.registerSingleton<Fresh>(fresh);
     BaseOptions options = BaseOptions(
       baseUrl: _host,
-      connectTimeout: const Duration(seconds: 5),
+      connectTimeout: const Duration(seconds: 15),
       receiveTimeout: const Duration(seconds: 10),
     );
 

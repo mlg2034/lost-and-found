@@ -1,21 +1,22 @@
 import 'package:equatable/equatable.dart';
+import 'package:tamyrlan/domain/model/user.dart';
 
 class Post extends Equatable {
-  int id;
-  List? user;
-  String? photo;
-  String? description;
-  String? title;
-  String? city;
-  String? address;
-  String? date;
-  String? name;
-  String? phone;
-  String? email;
-  double? latitude;
-  double? longitude;
+  final int id;
+  final User? user;
+  final String? photo;
+  final String? description;
+  final String? title;
+  final String? city;
+  final String? address;
+  final String? date;
+  final String? name;
+  final String? phone;
+  final String? email;
+  final double? latitude;
+  final double? longitude;
 
-  Post({
+  const Post({
     required this.id,
     this.user,
     this.photo,

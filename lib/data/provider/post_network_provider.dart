@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:format/format.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/domain/model/post.dart';
+import 'package:tamyrlan/domain/model/user.dart';
 
 class PostNetworkProvider {
   final Dio _dio;
@@ -14,7 +15,7 @@ class PostNetworkProvider {
 
   Future<Post> getPost(int id) async {
     var response = await _dio.get(
-      'api_user/get_post/',
+      'api_post/get_post/',
       queryParameters: {'post_id': id},
     );
     return _parsePost(response.data);
@@ -51,7 +52,7 @@ class PostNetworkProvider {
       id: e['id'],
       title: e['title'],
       description: e['description'],
-      user: e['user'],
+      user: _parseUser(e['user']),
       date:
           '{:02d}.{:02d}.{:02d}'.format(date.day, date.month, date.year % 100),
       photo: e['photo'].toList(),
@@ -71,6 +72,15 @@ class PostNetworkProvider {
       date:
           '{:02d}.{:02d}.{:02d}'.format(date.day, date.month, date.year % 100),
       photo: e['photo'],
+    );
+  }
+  
+  User _parseUser(dynamic e){
+    return User(
+      fullName: e['full_name'],
+      phone: e['phone'],
+      id: e['id'],
+      avatar: e['avatar'],
     );
   }
 // Future<RegistrationResponse> startUser() async {
