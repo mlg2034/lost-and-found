@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class AppInitializer {
-  static const String _host = 'http://10.201.8.107:8000/';
+  static const String _host = 'http://10.201.0.175:8000/';
 
   static Future<Dio> initialize() async {
     await Hive.initFlutter();
@@ -47,7 +47,7 @@ class AppInitializer {
       Dio httpClient,
       ) async {
     final response = await httpClient.post(
-      '${_host}users/refresh_token/',
+      '${_host}api_user/refresh_token/',
       data: {
         'refresh': token?.refreshToken,
       },

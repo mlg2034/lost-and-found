@@ -12,21 +12,21 @@ class AuthNetworkProvider {
     await _dio.post('api_user/verify_phone/', data: {'phone': phone});
   }
 
-  Future<RegistrationResponse> startUser() async {
-    final response = await _dio.get('/api/accounts/start_user');
-    dynamic userData = response.data['user'];
-    final user = User(
-      id: userData['id'],
-      phone: userData['phone'],
-      fullName: userData['fullName'],
-    );
-    dynamic tokenData = response.data['token'];
-    final token = Token(
-      access: tokenData['access'],
-      refresh: tokenData['refresh'],
-    );
-    return RegistrationResponse(user, token);
-  }
+  // Future<RegistrationResponse> startUser() async {
+  //   final response = await _dio.get('/api/accounts/start_user');
+  //   dynamic userData = response.data['user'];
+  //   final user = User(
+  //     id: userData['id'],
+  //     phone: userData['phone'],
+  //     fullName: userData['fullName'],
+  //   );
+  //   dynamic tokenData = response.data['token'];
+  //   final token = Token(
+  //     access: tokenData['access'],
+  //     refresh: tokenData['refresh'],
+  //   );
+  //   return RegistrationResponse(user, token);
+  // }
 
   Future<RegistrationResponse> verifyCode(String phone, int code) async {
     final response = await _dio.post(

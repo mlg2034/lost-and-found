@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:tamyrlan/pages/home_page.dart';
 import 'package:tamyrlan/pages/login_page.dart';
+import 'package:tamyrlan/pages/menu_page.dart';
 import 'package:tamyrlan/pages/profile_page.dart';
 import 'package:tamyrlan/data/db/box_helper.dart';
 import 'package:tamyrlan/data/db/hives.dart';
@@ -12,6 +13,9 @@ import 'package:tamyrlan/domain/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'data/repository/data_post_repository.dart';
+import 'domain/repository/post_repository.dart';
 
 class App extends StatelessWidget {
   final Dio _dio;
@@ -30,15 +34,10 @@ class App extends StatelessWidget {
         RepositoryProvider<AuthRepository>(
           create: (context) => DataAuthRepository(_dio),
         ),
-        // RepositoryProvider<LearningRepository>(
-        //   create: (context) => DataLearningRepository(_dio),
-        // ),
-        // RepositoryProvider<QuizRepository>(
-        //   create: (context) => DataQuizRepository(_dio),
-        // ),
-        // RepositoryProvider<UserRepository>(
-        //   create: (context) => DataUserRepository(_dio),
-        // ),
+        RepositoryProvider<PostRepository>(
+          create: (context) => DataPostRepository(_dio),
+        ),
+
       ],
       child: const AppView(),
     );
@@ -75,6 +74,6 @@ class AppViewState extends State<AppView> {
     if (!BoxHelper.hasToken()) {
       return const LoginPage();
     }
-    return const HomePage();
+    return const MenuPage();
   }
 }
