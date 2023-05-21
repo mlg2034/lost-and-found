@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/widgets/text_field_widget/cutom_text_field.dart';
 
@@ -37,8 +38,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
           Stack(
             children: [
               Container(
-                width: double.infinity,
-                height: 159,
+                width: double.infinity.w,
+                height: 159.h,
                 color: Color.fromRGBO(100, 93, 215, 1),
               ),
               Padding(
@@ -52,7 +53,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        _getFromGallery();
+                        // _getFromGallery();
                       },
                       child: CircleAvatar(
                         backgroundColor: Color.fromRGBO(100, 93, 215, 1),
@@ -78,8 +79,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   fontFamily: 'Bitter'),
             ),
           ),
-          const SizedBox(
-            height: 30,
+           SizedBox(
+            height: 30.h,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -96,8 +97,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 CustomTextField(
                     textEditingController: textController,
                     textFieldName: 'New Name'),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 Text(
                   'Email',

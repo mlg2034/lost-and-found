@@ -25,8 +25,8 @@ class _ProductViewState extends State<ProductView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 59),
                   child: SizedBox(
-                    height: 222,
-                    width: 414,
+                    height: 222.h,
+                    width: 414.w,
                     child: Image.asset('assets/images/AirPods.png'),
                   ),
                 ),
@@ -41,8 +41,8 @@ class _ProductViewState extends State<ProductView> {
                             builder: (context) => HomePage()));
                       },
                       child: SizedBox(
-                          height: 35,
-                          width: 35,
+                          height: 35.h,
+                          width: 35.w,
                           child: Image.asset('assets/images/go_back.png')),
                     ),
                   ),
@@ -72,8 +72,8 @@ class _ProductViewState extends State<ProductView> {
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                       SizedBox(
+                        height: 10.h,
                       ),
                       const Divider(
                         color: Color.fromRGBO(100, 93, 215, 1),
@@ -89,8 +89,8 @@ class _ProductViewState extends State<ProductView> {
                               fontSize: 16),
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
+                       SizedBox(
+                        height: 12.h,
                       ),
                       const Text(
                         
@@ -101,8 +101,8 @@ class _ProductViewState extends State<ProductView> {
                             fontSize: 12,
                             color: Color.fromRGBO(0, 0, 0, 1)),
                       ),
-                      const SizedBox(
-                        height: 91,
+                       SizedBox(
+                        height: 91.h,
                       ),
                       const Divider(
                         color: Color.fromRGBO(100, 93, 215, 1),
@@ -118,8 +118,8 @@ class _ProductViewState extends State<ProductView> {
                               fontSize: 16),
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
+                       SizedBox(
+                        height: 12.h,
                       ),
                       Row(
                         children: [
@@ -129,8 +129,8 @@ class _ProductViewState extends State<ProductView> {
                                   padding: const EdgeInsets.only(
                                       top: 30, left: 15, right: 15),
                                   child: Image.asset('assets/images/pin.png')),
-                              const SizedBox(
-                                height: 3,
+                               SizedBox(
+                                height: 3.h,
                               ),
                               const Text(
                                 'Astana',
@@ -148,15 +148,15 @@ class _ProductViewState extends State<ProductView> {
                                       builder: (context) => MapPage()));
                             },
                             child: SizedBox(
-                              height: 76,
-                              width: 260,
+                              height: 76.h,
+                              width: 260.w,
                               child: Image.asset('assets/images/carta.png'),
                             ),
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       const Divider(
                         color: Color.fromRGBO(100, 93, 215, 1),
@@ -169,8 +169,8 @@ class _ProductViewState extends State<ProductView> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400),
                       ),
-                      const SizedBox(
-                        height: 20,
+                       SizedBox(
+                        height: 20.h,
                       ),
                       Row(
                         children: [
@@ -194,8 +194,8 @@ class _ProductViewState extends State<ProductView> {
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400),
                               ),
-                              const SizedBox(
-                                height: 6,
+                               SizedBox(
+                                height: 6.h,
                               ),
                               const Text(
                                 'example@gmail.com',
@@ -205,12 +205,12 @@ class _ProductViewState extends State<ProductView> {
                                     fontWeight: FontWeight.w300,
                                     color: Color.fromRGBO(135, 131, 131, 1)),
                               ),
-                              const SizedBox(
-                                height: 17,
+                              SizedBox(
+                                height: 17.h,
                               ),
                               SizedBox(
-                                width: 91,
-                                height: 21,
+                                width: 91.w,
+                                height: 21.h,
                                 child: OutlinedButton(
                                     style: ButtonStyle(
                                       side:

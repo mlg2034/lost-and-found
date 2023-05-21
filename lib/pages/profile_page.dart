@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tamyrlan/pages/login_page.dart';
@@ -23,8 +24,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _getFromGallery() async {
     PickedFile? pickedFile = await ImagePicker().getImage(
       source: ImageSource.gallery,
-      maxWidth: double.infinity,
-      maxHeight: 139,
+      maxWidth: double.infinity.w,
+      maxHeight: 139.h,
     );
 
     if (pickedFile != null) {
@@ -41,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Container(
             width: double.infinity,
-            height: 159,
+            height: 159.h,
             color: Color.fromRGBO(100, 93, 215, 1),
           ),
           Padding(
@@ -143,8 +144,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         builder: (context) => PostsViewPage()));
                   },
                   child: Container(
-                    width: double.infinity,
-                    height: 34,
+                    width: double.infinity.w,
+                    height: 34.h,
                     decoration: BoxDecoration(
                         color: Color.fromRGBO(67, 197, 158, 1),
                         borderRadius: BorderRadius.circular(7)),
@@ -167,14 +168,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     fontSize: 16,
                   ),
                 ),
-                const SizedBox(
-                  height: 13,
+                 SizedBox(
+                  height: 13.h,
                 ),
                 CustomTextWidget(
                   title: 'example@gmail.com',
                 ),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -184,12 +185,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     changeTitle: 'Click to change email',
                   ),
                 ),
-                const SizedBox(
-                  height: 13,
+                 SizedBox(
+                  height: 13.h,
                 ),
                 CustomTextWidget(title: '+7 (777) 777 77 77'),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -199,16 +200,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     changeTitle: 'Click to change phone number',
                   ),
                 ),
-                const SizedBox(
-                  height: 23,
+                 SizedBox(
+                  height: 23.h,
                 ),
                 CustomTextWidget(title: 'Payments'),
-                const SizedBox(
-                  height: 13,
+                 SizedBox(
+                  height: 13.h,
                 ),
                 CustomTextWidget(title: 'Wallet'),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -218,12 +219,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     changeTitle: 'Click to view bonuses',
                   ),
                 ),
-                const SizedBox(
-                  height: 13,
+                 SizedBox(
+                  height: 13.h,
                 ),
                 CustomTextWidget(title: 'Payment Card'),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -233,12 +234,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     changeTitle: 'Click to link payment card',
                   ),
                 ),
-                const SizedBox(
-                  height: 23,
+                 SizedBox(
+                  height: 23.h,
                 ),
                 CustomTextWidget(title: 'Settings'),
-                const SizedBox(
-                  height: 23,
+                 SizedBox(
+                  height: 23.h,
                 ),
                 const Row(
                   children: [
@@ -258,17 +259,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                 SizedBox(
+                  height: 10.h,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                        width: 10,
-                        height: 13,
+                        width: 10.w,
+                        height: 13.h,
                         child: SvgPicture.asset('assets/images/file.svg')),
-                    const SizedBox(
-                      width: 3,
+                     SizedBox(
+                      width: 3.w,
                     ),
                     const Text(
                       'Terms of Use',
@@ -281,17 +282,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                 SizedBox(
+                  height: 10.h,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                        width: 13,
-                        height: 12,
+                        width: 13.w,
+                        height: 12.h,
                         child: SvgPicture.asset('assets/images/triangle.svg')),
-                    const SizedBox(
-                      width: 3,
+                     SizedBox(
+                      width: 3.w,
                     ),
                     const Text(
                       'Privacy policy',
@@ -304,8 +305,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                 SizedBox(
+                  height: 10.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -315,11 +316,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Row(
                     children: [
                       SizedBox(
-                          width: 13,
-                          height: 12,
+                          width: 13.w,
+                          height: 12.h,
                           child: Image.asset('assets/images/edit.png')),
-                      const SizedBox(
-                        width: 3,
+                       SizedBox(
+                        width: 3.w,
                       ),
                       const Text(
                         'Edit',

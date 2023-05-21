@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamyrlan/pages/profile_page.dart';
 
 import '../widgets/text_field_widget/custom_search_text_fied.dart';
@@ -33,12 +34,12 @@ class _HomePageState extends State<HomePage> {
                     });
                   } ,
                   child: CustomSearchTextField(textHint: 'S e a r c h . . .',)),
-                const SizedBox(
-                  height: 20,
+                 SizedBox(
+                  height: 20.h,
                 ),
                 SizedBox(
-                  height: 18,
-                  width: 118,
+                  height: 18.h,
+                  width: 118.w,
                   child: OutlinedButton(
                       style: ButtonStyle(
                         side: MaterialStateProperty.all<BorderSide>(
@@ -56,12 +57,12 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w400),
                       )),
                 ),
-                const SizedBox(
-                  height: 28,
+                 SizedBox(
+                  height: 28.h,
                 ),
                 Container(
-                  height: 236,
-                  width: 180,
+                  height: 236.h,
+                  width: 180.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     color: const Color.fromRGBO(255, 255, 255, 1),
@@ -70,20 +71,20 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          height: 115,
-                          width: 180,
+                          height: 115.h,
+                          width: 180.w,
                           child: InkWell(
                               onTap: ()async {
                               await  Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ProductView()));
                               },
                               child: Image.asset('assets/images/AirPods.png'))),
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 6.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                           const Text(
                               'Airpods Pro Lost',
                               style: TextStyle(
                                   fontFamily: 'Bitter',
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 16),
                             ),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Row(
                               children: [

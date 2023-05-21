@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:tamyrlan/widgets/text_field_widget/cutom_text_field.dart';
@@ -75,14 +76,14 @@ class _CreatePageState extends State<CreatePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 14,
+                 SizedBox(
+                  height: 14.h,
                 ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: SizedBox(
-                    height: 139,
-                    width: 375,
+                    height: 139.h,
+                    width: 375.w,
                     child: GestureDetector(
                       onTap: () {
                         _getFromGallery();
@@ -100,8 +101,8 @@ class _CreatePageState extends State<CreatePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                 SizedBox(
+                  height: 20.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -111,8 +112,8 @@ class _CreatePageState extends State<CreatePage> {
                         //when Lost
                       },
                       child: Container(
-                        width: 146,
-                        height: 35,
+                        width: 146.w,
+                        height: 35.h,
                         decoration: BoxDecoration(
                             color: Color.fromRGBO(100, 93, 215, 1),
                             borderRadius: BorderRadius.circular(7)),
@@ -133,8 +134,8 @@ class _CreatePageState extends State<CreatePage> {
                         //when Found
                       },
                       child: Container(
-                        width: 146,
-                        height: 35,
+                        width: 146.w,
+                        height: 35.h,
                         decoration: BoxDecoration(
                             color: Color.fromRGBO(135, 131, 131, 0.5),
                             borderRadius: BorderRadius.circular(7)),
@@ -152,7 +153,7 @@ class _CreatePageState extends State<CreatePage> {
                     )
                   ],
                 ),
-                const SizedBox(height: 16,),
+                 SizedBox(height: 16.h,),
                 const Text(
                   'Post title*',
                   style: TextStyle(
@@ -165,8 +166,8 @@ class _CreatePageState extends State<CreatePage> {
                   textFieldName: 'Write a title of post',
                   textEditingController: textController,
                 ),
-                const SizedBox(
-                  height: 14,
+                 SizedBox(
+                  height: 14.h,
                 ),
                 const Text(
                   'Description*',
@@ -199,8 +200,8 @@ class _CreatePageState extends State<CreatePage> {
                         vertical: 6.0, horizontal: 10),
                   ),
                 ),
-                const SizedBox(
-                  height: 28,
+                 SizedBox(
+                  height: 28.h,
                 ),
                 GestureDetector(
                   onTap: () {},
@@ -220,8 +221,8 @@ class _CreatePageState extends State<CreatePage> {
                     )),
                   ),
                 ),
-                const SizedBox(
-                  height: 42,
+                 SizedBox(
+                  height: 42.h,
                 ),
                 const Center(
                   child: Text(
@@ -234,8 +235,8 @@ class _CreatePageState extends State<CreatePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 9,
+                 SizedBox(
+                  height: 9.h,
                 ),
                 const Text(
                   'Contact Name*',
@@ -245,17 +246,17 @@ class _CreatePageState extends State<CreatePage> {
                       fontSize: 16,
                       color: Colors.black),
                 ),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 SizedBox(
-                    height: 32,
+                    height: 32.h,
                     child: CustomTextField(
                       textFieldName: 'Name Surname',
                       textEditingController: textController,
                     )),
-                const SizedBox(
-                  height: 9,
+                 SizedBox(
+                  height: 9.h,
                 ),
                 const Text(
                   'Email*',
@@ -265,17 +266,17 @@ class _CreatePageState extends State<CreatePage> {
                       fontSize: 16,
                       color: Colors.black),
                 ),
-                const SizedBox(
-                  height: 3,
+                 SizedBox(
+                  height: 3.h,
                 ),
                 SizedBox(
-                    height: 32,
+                    height: 32.h,
                     child: CustomTextField(
                       textFieldName: 'example@gmail.com',
                       textEditingController: textController,
                     )),
-                const SizedBox(
-                  height: 9,
+                 SizedBox(
+                  height: 9.h,
                 ),
                 const Text(
                   'Phone Number*',
@@ -289,15 +290,15 @@ class _CreatePageState extends State<CreatePage> {
                   maskFormatter: maskFormatter,
                   textEditingController: textController,
                 ),
-                const SizedBox(
-                  height: 36,
+                 SizedBox(
+                  height: 36.h,
                 ),
                 Center(
                     child: GestureDetector(
                   onTap: () {},
                   child: Container(
-                    width: 326,
-                    height: 45,
+                    width: 326.w,
+                    height: 45.h,
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(67, 197, 158, 1),
                         borderRadius: BorderRadius.circular(11)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:tamyrlan/pages/menu_page.dart';
@@ -42,8 +43,8 @@ final textController = TextEditingController();
                               padding: const EdgeInsets.only(top: 90),
                               child: Image.asset(
                                 'assets/images/Vectorcorner.png',
-                                width: 273,
-                                height: 273,
+                                width: 273.w,
+                                height: 273.h,
                               ),
                             ),
                           ),
@@ -70,15 +71,15 @@ final textController = TextEditingController();
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600),
                             ),
-                            const SizedBox(
-                              height: 30,
+                             SizedBox(
+                              height: 30.h,
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 52),
                               child: CustomPhoneTextFieldWidget(maskFormatter:maskFormatter, textEditingController: textController,)
                             ),
-                            const SizedBox(
-                              height: 10,
+                             SizedBox(
+                              height: 10.h,
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 52),
@@ -124,12 +125,12 @@ final textController = TextEditingController();
                                       ),
                                       keyboardType: TextInputType.phone,
                                     ),
-                                    const SizedBox(
-                                      height: 10,
+                                     SizedBox(
+                                      height: 10.h,
                                     ),
                                     SizedBox(
-                                      height: 45,
-                                      width: 246,
+                                      height: 45.h,
+                                      width: 246.w,
                                       child: OutlinedButton(
                                           style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -179,8 +180,8 @@ final textController = TextEditingController();
                               (
                                 child: Image.asset(
                                   'assets/images/Vectorcorner.png',
-                                  width: 273,
-                                  height: 273,
+                                  width: 273.w,
+                                  height: 273.h,
                                 ),
                               ),
                             ),

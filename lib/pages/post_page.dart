@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostsViewPage extends StatelessWidget {
   const PostsViewPage({super.key});
@@ -26,12 +27,12 @@ class PostsViewPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 18),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 37,
+                 SizedBox(
+                  height: 37.h,
                 ),
                 Container(
-                  width: double.infinity,
-                  height: 100,
+                  width: double.infinity.w,
+                  height: 100.h,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                       color: Color.fromRGBO(135, 131, 131, 1),
@@ -61,7 +62,7 @@ class PostsViewPage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        width: 239,
+                        width: 239.w,
                         child: Text(
                           'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
                           style: TextStyle(
@@ -75,10 +76,10 @@ class PostsViewPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 21,),
+                 SizedBox(height: 21.h,),
                 Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 100.h,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                       color: Color.fromRGBO(135, 131, 131, 1),
@@ -108,7 +109,7 @@ class PostsViewPage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        width: 239,
+                        width: 239.w,
                         child: Text(
                           'Lost Airpods Pro version with a case and one earphone inside, on the territory of EXPO.',
                           style: TextStyle(
