@@ -55,7 +55,7 @@ class PostNetworkProvider {
       user: _parseUser(e['user']),
       date:
           '{:02d}.{:02d}.{:02d}'.format(date.day, date.month, date.year % 100),
-      photo: e['photo'].toList(),
+      photo: e['photo'],
       phone: e['phone'],
       email: e['email'],
       latitude: e['latitude'],

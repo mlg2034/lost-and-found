@@ -162,12 +162,21 @@ class _HomePageState extends State<HomeView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      post.title!,
-                      style: const TextStyle(
-                          fontFamily: 'Bitter',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            post.title!,
+                            style: const TextStyle(
+                                fontFamily: 'Bitter',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 16,
@@ -176,7 +185,7 @@ class _HomePageState extends State<HomeView> {
                       children: [
                         Expanded(
                           child: Text(
-                            maxLines: 3,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
                             post.description!,

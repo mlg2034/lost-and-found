@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class AppInitializer {
-  static const String _host = 'http://192.168.1.162:8000/';
+  static const String _host = 'http://10.202.4.43:8000/';
 
   static Future<Dio> initialize() async {
     await Hive.initFlutter();

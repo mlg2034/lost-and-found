@@ -41,25 +41,11 @@ class UserNetworkProvider {
   }
 
   User _parseUser(dynamic e) {
-    String? formattedDate;
-    if (e['birthday_date'] != null) {
-      var datetime = DateTime.parse(e['birthday_date']);
-      formattedDate = format(
-        "{:02d}.{:02d}.{:02d}",
-        datetime.day,
-        datetime.month,
-        datetime.year,
-      );
-    }
     return User(
       fullName: e['full_name'],
-      email: e['email'],
       phone: e['phone'],
       id: e['id'],
       avatar: e['avatar'],
-      // birthdayDate: formattedDate,
-      // languages:
-      // (e['languages'] as List).map((e) => _parseUserLanguage(e)).toList(),
     );
   }
 }

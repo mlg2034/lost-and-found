@@ -68,7 +68,7 @@ class _PostViewState extends State<PostView> {
                         child: SizedBox(
                           height: 222,
                           width: 414,
-                          child: Image.asset('assets/images/AirPods.png'),
+                          child: Image.network(state.post!.photo!),
                         ),
                       ),
                       Align(
